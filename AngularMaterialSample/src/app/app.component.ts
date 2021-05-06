@@ -1,5 +1,6 @@
 import {Component, ViewChild, OnInit} from '@angular/core';
 import {MatTableDataSource,MatPaginator,MatButton} from '@angular/material';
+import { FormControl } from '@angular/forms';
 
 /**
  * @title Table with sorting
@@ -20,21 +21,43 @@ export class AppComponent implements OnInit{
    * Set the sort after the view init since this component will
    * be able to query its view for the initialized sort.
    */
+
+  nameFilter = new FormControl('');
+
+  filterValues = {
+    position: '',
+    };
+
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
+    if(ELEMENT_DATA.length>=5){
+      this.dataSource.paginator = this.paginator;
+    }
+    // this.dataSource.paginator = this.paginator;
     this.dataSource1.paginator = this.paginator1;
-    console.log(this.showPaginator(ELEMENT_DATA.length));
+
+    this.nameFilter.valueChanges
+    .subscribe(
+      position => {
+        this.filterValues.position = position;
+        this.dataSource.filter = JSON.stringify(this.filterValues);
+      }
+    )
   }
 
   ngAfterViewInit(){
-    console.log(this.showPaginator(ELEMENT_DATA.length));
+    console.log(ELEMENT_DATA.length);
+    this.showPaginator(ELEMENT_DATA.length);
   }
 
   showPaginator(length : number):boolean{
     if(length>=5){
+      console.log("this returns true");
       return true;
-    }else{
+    }else if(length!=undefined){
+      console.log("this returns false");
       return false;
+    }else{
+      return true;
     }
   }
 }
@@ -50,7 +73,7 @@ const ELEMENT_DATA: Element[] = [
   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
   {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
   {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
+  // {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
   // {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
   // {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
   // {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},

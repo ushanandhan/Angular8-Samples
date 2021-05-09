@@ -18,7 +18,7 @@ export class VideoPlayerComponent implements OnInit,OnChanges {
   ngOnChanges() {
     this.safeVideoUrls = this.videos ?
       this.videos.map(v => this.sanitizer.bypassSecurityTrustResourceUrl(this.youtubeUrlPrefix + v))
-      : this.videos;
+      : this.videos; //Conditional Statement
   }
 
   ngOnInit() {

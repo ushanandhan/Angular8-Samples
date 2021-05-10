@@ -3,15 +3,14 @@
         <app-exercise-description [description]="currentExercise.exercise.description"
             [steps]="currentExercise.exercise.procedure"></app-exercise-description>
     </div>
-    <div id="exercise-pane" class="col-sm-6">
-        <div id="pause-overlay" (click)="pauseResumeToggle()">
-            <span class="pause absolute-center" [ngClass]="{'ion-md-pause' : !workoutPaused, 'ion-md-play' :
-            workoutPaused}">
+    <div id="exercise-pane" class="col-sm">
+        <div id="pause-overlay" (click)="pauseResumeToggle()" (window:keyup)= "onKeyPressed($event)">
+            <span class="pause absolute-center" [ngClass]="{'ion-md-pause' : !workoutPaused, 'ion-md-play' : workoutPaused}">
             </span>
         </div>
         <h4 class="text-center">Workout Remaining - {{workoutTimeRemaining | secondsToTime}}</h4>
         <h1 class="text-center">{{currentExercise.exercise.title}}</h1>
-        <div class="image-container row">
+        <div class="image-container" style="display: flex">
             <img class="img-fluid col-sm" [src]="'/assets/images/' + currentExercise.exercise.image" />
         </div>
         <div class="progress time-progress row">

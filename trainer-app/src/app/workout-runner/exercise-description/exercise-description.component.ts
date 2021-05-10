@@ -9,7 +9,7 @@ export class ExerciseDescriptionComponent implements OnInit {
 
   @Input() description : string;
   @Input() steps : string;
-
+  
   constructor() { }
 
   ngOnInit() {

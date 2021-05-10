@@ -1,5 +1,5 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Component, OnInit, OnChanges, Input, ViewEncapsulation } from '@angular/core';
+import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-video-player',
@@ -15,10 +15,10 @@ export class VideoPlayerComponent implements OnInit,OnChanges {
 
   constructor(private sanitizer: DomSanitizer) { }
 
-  ngOnChanges() {
+  ngOnChanges(){
     this.safeVideoUrls = this.videos ?
       this.videos.map(v => this.sanitizer.bypassSecurityTrustResourceUrl(this.youtubeUrlPrefix + v))
-      : this.videos; //Conditional Statement
+      : this.videos;
   }
 
   ngOnInit() {

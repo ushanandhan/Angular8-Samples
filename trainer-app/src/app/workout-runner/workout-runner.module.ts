@@ -9,11 +9,9 @@ import { SecondsToTimePipe } from './shared/seconds-to-time.pipe';
 
 @NgModule({
   declarations: [WorkoutRunnerComponent, ExerciseDescriptionComponent, VideoPlayerComponent, SecondsToTimePipe],
+  exports:[WorkoutRunnerComponent],
   imports: [
     CommonModule
-  ],
-  exports: [
-    WorkoutRunnerComponent
   ]
 })
 export class WorkoutRunnerModule { }

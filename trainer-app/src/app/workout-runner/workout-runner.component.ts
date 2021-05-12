@@ -272,7 +272,8 @@ export class WorkoutRunnerComponent implements OnInit {
     else { this.pause(); }
   }
 
-  onKeyPressed(event: KeyboardEvent) {
+  onKeyPressed(event: any) {
+    console.info("Event is : "+event);
     if (event.which === 80 || event.which === 112) {
       this.pauseResumeToggle();
     }

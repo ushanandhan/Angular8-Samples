@@ -27,8 +27,9 @@ export class WorkoutHistoryTrackerService {
     this.workoutHistory.push(this.currentWorkoutLog);
   }
 
-  exerciseComplete(exercise: ExercisePlan) {
-    this.currentWorkoutLog.lastExercise = exercise.exercise.title;
+  exerciseComplete(exercisePlan: ExercisePlan) {
+    console.log(exercisePlan);
+    this.currentWorkoutLog.lastExercise = exercisePlan.exercise.title;
     ++this.currentWorkoutLog.exercisesDone;
   }
 
@@ -37,6 +38,10 @@ export class WorkoutHistoryTrackerService {
     this.currentWorkoutLog.endedOn = new Date();
     this.currentWorkoutLog = null;
     this.workoutTracked = false;
+  }
+
+  getHistory(): Array<WorkoutLogEntry> {
+    return this.workoutHistory;
   }
 
 }

@@ -8,6 +8,7 @@ import { StartComponent } from './start/start.component';
 import { FinishComponent } from './finish/finish.component';
 import { CoreModule } from './core/core.module';
 import { WorkoutHistoryComponent } from './workout-history/workout-history.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { WorkoutHistoryComponent } from './workout-history/workout-history.compo
     BrowserModule,
     AppRoutingModule,
     WorkoutRunnerModule,
-    CoreModule
+    CoreModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
